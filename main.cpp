@@ -40,6 +40,7 @@ DigitalOut cs(SPI_CS);
 *                            FUNCTIONS PROTOTYPES
 *******************************************************************************/
 void boardInit(void);
+void Rx_interrupt(void);
 uint8_t deviceInit(void);
 void application(void);
 void Set_DeviceConnectable(void);
@@ -47,6 +48,7 @@ uint8_t Sensor_DeviceInit(void);
 void APP_Tick(void);
 //tBleStatus Free_Fall_Notify(void);
 //void Read_Request_CB(uint16_t);
+
 
 /*******************************************************************************
 *                                 DEFINES
@@ -60,7 +62,6 @@ void APP_Tick(void);
 /*******************************************************************************
 *                                 VARIABLES
 *******************************************************************************/
-
 volatile uint8_t set_connectable = 1;
 uint16_t connection_handle = 0;
 uint8_t connInfo[20];
@@ -114,7 +115,7 @@ int main() {
     /* board init */
     boardInit();
 
-    /* BlueNRG-1 stack init */
+    /* BlueNRG-1 stack init*/
     ret = BlueNRG_Stack_Initialization(&BlueNRG_Stack_Init_params);
     if (ret != BLE_STATUS_SUCCESS) {
         PRINTF("Error in BlueNRG_Stack_Initialization() 0x%02x\r\n", ret);
@@ -124,7 +125,7 @@ int main() {
     PRINTF("BlueNRG-1 BLE Sensor Demo Application (version: %s)\r\n",
            BLE_SENSOR_VERSION_STRING);
 
-    /* Device Init */
+    /* Device Init*/
     //ret = deviceInit();
     ret = Sensor_DeviceInit();
     if (ret != BLE_STATUS_SUCCESS) {
@@ -153,7 +154,16 @@ int main() {
 } /* end main() */
 
 
-
+/*******************************************************************************
+* Function Name  : Rx_interrupt
+* Description    : interrupt handler for serialport rx event
+* Input          : None.
+* Return         : None.
+******************************************************************************/
+void Rx_interrupt(void){
+    serialport.putc(serialport.getc());
+	return;
+}
 
 
 /*******************************************************************************
@@ -170,6 +180,8 @@ void boardInit(){
 	cs=1;
 	spi.format(8, 0);
 	spi.frequency(100000);
+    // serial interrupt
+    serialport.attach(&Rx_interrupt, Serial::RxIrq);
 	// Ready
 	led2 = 1;
 }
