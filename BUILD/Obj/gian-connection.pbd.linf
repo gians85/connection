@@ -1,6 +1,4 @@
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\gian-connection.pbd.linf
-C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\gatt_db.pbi
-C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\main.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\aes.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\aesni.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\AnalogIn.pbi
@@ -21,6 +19,7 @@ C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\BlueNRG1_mft.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\BlueNRG1_pka.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\BlueNRG1_rng.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\BlueNRG1_rtc.pbi
+C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\BlueNRG1_sleep.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\BlueNRG1_spi.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\BlueNRG1_sysCtrl.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\BlueNRG1_uart.pbi
@@ -63,7 +62,9 @@ C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\FilePath.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\FileSystem.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\FileSystemHandle.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\FlashIAP.pbi
+C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\gatt_db.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\gcm.pbi
+C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\gp_timer.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\gpio_api.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\havege.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\HeapBlockDevice.pbi
@@ -73,6 +74,7 @@ C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\I2CSlave.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\InterruptIn.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\InterruptManager.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\LocalFileSystem.pbi
+C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\main.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\mbed_alloc_wrappers.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\mbed_application.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\mbed_assert.pbi
@@ -109,6 +111,7 @@ C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\memory_buffer_alloc.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\misc.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\net_sockets.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\oid.pbi
+C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\osal.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\padlock.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\pem.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\pin_device.pbi
@@ -162,6 +165,3 @@ C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\x509_csr.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\x509write_crt.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\x509write_csr.pbi
 C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\xtea.pbi
-C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\BlueNRG1_sleep.pbi
-C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\gp_timer.pbi
-C:\Users\Gianluca\mbedCLIdev\gian-connection\BUILD\Obj\osal.pbi

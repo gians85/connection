@@ -1,5 +1,6 @@
 #include "mbed.h"
-
+#include "colorlib.h"
+#include "imu.h"
 /*******************************************************************************
 *                                 INCLUDES
 *******************************************************************************/
@@ -34,7 +35,7 @@ DigitalOut led3(LED3);
 DigitalIn but1(PUSH1);
 DigitalIn but2(PUSH2);
 SPI spi(SPI_MOSI, SPI_MISO, SPI_SCK, SPI_CS); // mosi, miso, sclk
-DigitalOut cs(SPI_CS);
+//DigitalOut cs(SPI_CS);
 
 /*******************************************************************************
 *                            FUNCTIONS PROTOTYPES
@@ -48,6 +49,11 @@ uint8_t Sensor_DeviceInit(void);
 void APP_Tick(void);
 //tBleStatus Free_Fall_Notify(void);
 //void Read_Request_CB(uint16_t);
+uint8_t IMU_register(uint8_t, uint8_t);
+void IMU_readAcc(uint16_t *);
+void IMU_readGyr(uint16_t *);
+float IMU_readTemp();
+void IMU_config();
 
 
 /*******************************************************************************
@@ -115,6 +121,9 @@ int main() {
     /* board init */
     boardInit();
 
+    /*imu init*/
+    IMU_config();
+
     /* BlueNRG-1 stack init*/
     ret = BlueNRG_Stack_Initialization(&BlueNRG_Stack_Init_params);
     if (ret != BLE_STATUS_SUCCESS) {
@@ -162,6 +171,7 @@ int main() {
 ******************************************************************************/
 void Rx_interrupt(void){
     serialport.putc(serialport.getc());
+    serialport.printf("\t%.1f\n\r", IMU_readTemp());
 	return;
 }
 
@@ -177,7 +187,6 @@ void boardInit(){
 	but1.mode(NoPull);
 	but2.mode(NoPull);
 	// SPI Interface
-	cs=1;
 	spi.format(8, 0);
 	spi.frequency(100000);
     // serial interrupt
@@ -455,5 +464,60 @@ void aci_hal_end_of_radio_activity_event(uint8_t Last_State,
 }
 
 
+/*************************************************************************************************************************/
+/*                 IMU SECTION                                                                                           */
+/*************************************************************************************************************************/
 
 
+void IMU_config(){
+	IMU_register(0x11, 0x12);
+	IMU_register(0x19, 0x38);
+	IMU_register(0x10, 0x10);
+	IMU_register(0x18, 0x38);
+}
+
+
+uint8_t IMU_register(uint8_t reg_name, uint8_t data){
+	char reg, value;
+	if(data==READ){
+		 reg_name |= READ_1B;
+	}
+	reg = (char)reg_name;
+	spi.write(&reg, 1, &value, 1);
+	return (uint8_t)value;
+}
+
+
+void IMU_readAcc(uint16_t * buf){
+	buf[0]  = IMU_register(OUT_X_H_A, READ);
+	buf[0] <<= 8;
+	buf[0] |= IMU_register(OUT_X_L_A, READ);
+	buf[1]  = IMU_register(OUT_Y_H_A, READ);
+	buf[1] <<= 8;
+	buf[1] |= IMU_register(OUT_Y_L_A, READ);
+	buf[2]  = IMU_register(OUT_Z_H_A, READ);
+	buf[2] <<= 8;
+	buf[2] |= IMU_register(OUT_Z_L_A, READ);
+}
+
+
+void IMU_readGyr(uint16_t * buf){
+	buf[0]  = IMU_register(OUT_X_H_G, READ);
+	buf[0] <<= 8;
+	buf[0] |= IMU_register(OUT_X_L_G, READ);
+	buf[1]  = IMU_register(OUT_Y_H_G, READ);
+	buf[1] <<= 8;
+	buf[1] |= IMU_register(OUT_Y_L_G, READ);
+	buf[2]  = IMU_register(OUT_Z_H_G, READ);
+	buf[2] <<= 8;
+	buf[2] |= IMU_register(OUT_Z_L_G, READ);
+}
+
+
+float IMU_readTemp(){
+	int16_t temp = 0;
+	temp  = IMU_register(OUT_TEMP_H, READ);
+	temp <<= 8;
+	temp |= IMU_register(OUT_TEMP_L, READ);
+	return (25.0+(((float)temp)/16));
+}

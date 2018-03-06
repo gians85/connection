@@ -65,7 +65,8 @@ void spi_init(spi_t *obj, PinName mosi, PinName miso, PinName sclk, PinName ssel
 	GPIO_InitStructure.GPIO_Mode = GPIO_Output;
 	GPIO_InitStructure.GPIO_HighPwr = ENABLE;
 	GPIO_Init(&GPIO_InitStructure);
-	GPIO_SetBits(getGpioPin(ssel)); //SPI_CS_MS_DEMO_PIN);
+	//GPIO_SetBits(getGpioPin(ssel)); //SPI_CS_MS_DEMO_PIN);
+	GPIO_WriteBit(getGpioPin(obj->pin_ssel), 1);
 
 	obj->pin_miso = miso;
 	obj->pin_mosi = mosi;
@@ -209,14 +210,18 @@ int spi_master_write(spi_t *obj, int value){
 	int received_data;
 	/* Set communication mode */
 	SPI_SetMasterCommunicationMode(SPI_FULL_DUPLEX_MODE);
-	//GPIO_ResetBits(getGpioPin(obj->pin_ssel));
+	// start write: CS=0
+	GPIO_WriteBit(getGpioPin(obj->pin_ssel), 0);
 	// Write data to send to TX FIFO //
 	while(RESET == SPI_GetFlagStatus(SPI_FLAG_TFE));
 	SPI_SendData(value);
+	// read out fifo data //
 	while(RESET == SPI_GetFlagStatus(SPI_FLAG_RNE));
 	received_data = SPI_ReceiveData();
+	// wait busy
 	while (SET == SPI_GetFlagStatus(SPI_FLAG_BSY));
-	//GPIO_SetBits(getGpioPin(obj->pin_ssel));
+	// stop write: CS=1
+	GPIO_WriteBit(getGpioPin(obj->pin_ssel), 1);
 	return received_data;
 }
 
@@ -226,22 +231,24 @@ int spi_master_block_write(spi_t *obj, const char *tx_buffer, int tx_length,
 	obj->dummy_char = write_fill;
 	SPI_SetDummyCharacter(write_fill);
 
-	GPIO_ResetBits(getGpioPin(obj->pin_ssel));
-	for (int i=0; i<=tx_length; i++) {
+	GPIO_WriteBit(getGpioPin(obj->pin_ssel), 0);
+	for (int i=0; i<tx_length; i++) {
 		// Write data to send to TX FIFO //
 		while(RESET == SPI_GetFlagStatus(SPI_FLAG_TFE));
 		SPI_SendData(tx_buffer[i]);
 		while(RESET == SPI_GetFlagStatus(SPI_FLAG_RNE));
 		SPI_ReceiveData();
 	}
-	for (int i=0; i<=rx_length; i++) {
+	for (int i=0; i<rx_length; i++) {
 	    while(RESET == SPI_GetFlagStatus(SPI_FLAG_TFE));
 	    SPI_SendData(write_fill);
 	    while(RESET == SPI_GetFlagStatus(SPI_FLAG_RNE));
 	    rx_buffer[i] = SPI_ReceiveData();
-	  }
+	}
 	while (SET == SPI_GetFlagStatus(SPI_FLAG_BSY));
-	//GPIO_SetBits(getGpioPin(obj->pin_ssel));
+
+	GPIO_WriteBit(getGpioPin(obj->pin_ssel), 1);
+
 	return SUCCESS;
 }
 
