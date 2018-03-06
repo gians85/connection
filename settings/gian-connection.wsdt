@@ -16,8 +16,8 @@
           
           
           
-        <Column0>338</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
-      </Workspace>
+        <Column0>293</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      <PreferedWindows><Position>1</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows></Workspace>
       <Build>
         
         
@@ -28,19 +28,7 @@
     <Windows>
       
       
-    <Wnd2>
-        <Tabs>
-          <Tab>
-            <Identity>TabID-24594-20052</Identity>
-            <TabName>Workspace</TabName>
-            <Factory>Workspace</Factory>
-            <Session>
-              
-            <NodeDict><ExpandedNode>gian-connection</ExpandedNode><ExpandedNode>gian-connection/mbed-os</ExpandedNode><ExpandedNode>gian-connection/sdk_hal</ExpandedNode></NodeDict></Session>
-          </Tab>
-        </Tabs>
-        
-      <SelectedTab>0</SelectedTab></Wnd2><Wnd3>
+    <Wnd0>
         <Tabs>
           <Tab>
             <Identity>TabID-2574-20055</Identity>
@@ -56,20 +44,20 @@
           </Tab>
         <Tab><Identity>TabID-14850-26580</Identity><TabName>Ambiguous Definitions</TabName><Factory>Select-Ambiguous-Definitions</Factory><Session/></Tab><Tab><Identity>TabID-1801-23814</Identity><TabName>Declarations</TabName><Factory>Find-All-Declarations</Factory><Session/></Tab><Tab><Identity>TabID-6596-1377</Identity><TabName>Find in Files</TabName><Factory>Find-in-Files</Factory><Session/></Tab><Tab><Identity>TabID-16907-8757</Identity><TabName>Tool Output</TabName><Factory>Tool-Output</Factory><Session/></Tab></Tabs>
         
-      <SelectedTab>5</SelectedTab></Wnd3></Windows>
+      <SelectedTab>0</SelectedTab></Wnd0><Wnd1><Tabs><Tab><Identity>TabID-30668-13984</Identity><TabName>Workspace</TabName><Factory>Workspace</Factory><Session><NodeDict><ExpandedNode>gian-connection</ExpandedNode></NodeDict></Session></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd1></Windows>
     <Editor>
       
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\main.cpp</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>187</YPos2><SelStart2>5259</SelStart2><SelEnd2>5259</SelEnd2></Tab><ActiveTab>0</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\main.cpp</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>9868</SelStart2><SelEnd2>9868</SelEnd2></Tab><ActiveTab>0</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-015A0358><key>iaridepm.enu1</key></Toolbar-015A0358></Sizes></Row0></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>659</Bottom><Right>433</Right><x>-2</x><y>-2</y><xscreen>207</xscreen><yscreen>169</yscreen><sizeHorzCX>107813</sizeHorzCX><sizeHorzCY>172449</sizeHorzCY><sizeVertCX>226563</sizeVertCX><sizeVertCY>674490</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>273</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>275</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>280612</sizeHorzCY><sizeVertCX>107813</sizeVertCX><sizeVertCY>172449</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-00CA0900><key>iaridepm.enu1</key></Toolbar-00CA0900></Sizes></Row0></Top><Left><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>695</Bottom><Right>367</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>104167</sizeHorzCX><sizeHorzCY>204082</sizeHorzCY><sizeVertCX>192188</sizeVertCX><sizeVertCY>711224</sizeVertCY></Rect></Wnd1></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>237</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>239</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>243878</sizeHorzCY><sizeVertCX>219792</sizeVertCX><sizeVertCY>150000</sizeVertCY></Rect></Wnd0></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 
