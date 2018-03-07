@@ -49,7 +49,7 @@ uint8_t Sensor_DeviceInit(void);
 void APP_Tick(void);
 //tBleStatus Free_Fall_Notify(void);
 //void Read_Request_CB(uint16_t);
-uint8_t IMU_register(uint8_t, uint8_t);
+uint8_t IMU_register(char, char);
 void IMU_readAcc(uint16_t *);
 void IMU_readGyr(uint16_t *);
 float IMU_readTemp();
@@ -169,9 +169,13 @@ int main() {
 * Input          : None.
 * Return         : None.
 ******************************************************************************/
+uint16_t buf[3];
+float a = 0.000061;
 void Rx_interrupt(void){
     serialport.putc(serialport.getc());
-    serialport.printf("\t%.1f\n\r", IMU_readTemp());
+    //serialport.printf("\t%.1f\n\r", IMU_readTemp());
+    IMU_readAcc(buf);
+	serialport.printf("\r\t%.4f  %.4f  %.4f", (buf[0]*a), (buf[1]*a), (buf[2]*a));
 	return;
 }
 
@@ -477,14 +481,18 @@ void IMU_config(){
 }
 
 
-uint8_t IMU_register(uint8_t reg_name, uint8_t data){
-	char reg, value;
-	if(data==READ){
-		 reg_name |= READ_1B;
+uint8_t IMU_register(char reg_name, char data){
+	char buf[2];
+	if (data == READ){
+		reg_name |= READ_1B;
+		spi.write(&reg_name, 1, &data, 1);
 	}
-	reg = (char)reg_name;
-	spi.write(&reg, 1, &value, 1);
-	return (uint8_t)value;
+	else{
+		buf[0] = reg_name;
+		buf[1] = data;
+		spi.write(buf, 2, &data, 0);
+	}
+	return (uint8_t)data;
 }
 
 

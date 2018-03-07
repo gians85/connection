@@ -93,7 +93,7 @@
         </option>
         <option>
           <name>OGChipSelectEditMenu</name>
-          <state>BlueNRG-1	ST BlueNRG-1</state>
+          <state>BLUENRG-1	ST BLUENRG-1</state>
         </option>
         <option>
           <name>GenLowLevelInterface</name>
@@ -149,7 +149,7 @@
         </option>
         <option>
           <name>GFPUDeviceSlave</name>
-          <state>BlueNRG-1	ST BlueNRG-1</state>
+          <state>BLUENRG-1	ST BLUENRG-1</state>
         </option>
         <option>
           <name>FPU2</name>
@@ -271,6 +271,7 @@
           <state>--guard_calls</state>
           <state>--preinclude=mbed_config.h</state>
           <state>-DARM_MATH_CM0</state>
+          <state>-DMBED_BUILD_TIMESTAMP=1520410271.42</state>
           <state>--diag_suppress=Pa050,Pa084,Pa093,Pa082</state>
           <state>-e</state>
           <state>-DTARGET_STMBLUE</state>
@@ -279,7 +280,6 @@
           <state>-D__CORTEX_M0</state>
           <state>-r</state>
           <state>-DTARGET_CORTEX_M</state>
-          <state>-DMBED_BUILD_TIMESTAMP=1520342793.01</state>
           <state>-DTARGET_M0</state>
           <state>-DTARGET_UVISOR_UNSUPPORTED</state>
           <state>--no_wrap_diagnostics</state>

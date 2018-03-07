@@ -208,14 +208,14 @@ static inline int ssp_busy(spi_t *obj)
 
 int spi_master_write(spi_t *obj, int value){
 	int received_data;
-	/* Set communication mode */
+	// Set communication mode //
 	SPI_SetMasterCommunicationMode(SPI_FULL_DUPLEX_MODE);
 	// start write: CS=0
 	GPIO_WriteBit(getGpioPin(obj->pin_ssel), 0);
 	// Write data to send to TX FIFO //
 	while(RESET == SPI_GetFlagStatus(SPI_FLAG_TFE));
 	SPI_SendData(value);
-	// read out fifo data //
+	// read RX FIFO data //
 	while(RESET == SPI_GetFlagStatus(SPI_FLAG_RNE));
 	received_data = SPI_ReceiveData();
 	// wait busy
@@ -230,25 +230,38 @@ int spi_master_block_write(spi_t *obj, const char *tx_buffer, int tx_length,
 
 	obj->dummy_char = write_fill;
 	SPI_SetDummyCharacter(write_fill);
-
+	// Set communication mode //
+	SPI_SetMasterCommunicationMode(SPI_FULL_DUPLEX_MODE);
+	// start write: CS=0
 	GPIO_WriteBit(getGpioPin(obj->pin_ssel), 0);
+	// TX BUFFER //
 	for (int i=0; i<tx_length; i++) {
 		// Write data to send to TX FIFO //
 		while(RESET == SPI_GetFlagStatus(SPI_FLAG_TFE));
 		SPI_SendData(tx_buffer[i]);
+		// discard RX FIFO
 		while(RESET == SPI_GetFlagStatus(SPI_FLAG_RNE));
 		SPI_ReceiveData();
 	}
-	for (int i=0; i<rx_length; i++) {
-	    while(RESET == SPI_GetFlagStatus(SPI_FLAG_TFE));
-	    SPI_SendData(write_fill);
-	    while(RESET == SPI_GetFlagStatus(SPI_FLAG_RNE));
-	    rx_buffer[i] = SPI_ReceiveData();
-	}
+	// wait busy
 	while (SET == SPI_GetFlagStatus(SPI_FLAG_BSY));
-
+	// RX BUFFER //
+	if (!rx_length)
+		rx_buffer[0] = 0;
+	else{
+		for (int i=0; i<rx_length; i++) {
+			// Write dummy_byte to send to TX FIFO //
+			while(RESET == SPI_GetFlagStatus(SPI_FLAG_TFE));
+			SPI_SendData(write_fill);
+			// read RX FIFO data //
+			while(RESET == SPI_GetFlagStatus(SPI_FLAG_RNE));
+			rx_buffer[i] = SPI_ReceiveData();
+		}
+	}
+	// wait busy
+	while (SET == SPI_GetFlagStatus(SPI_FLAG_BSY));
+	// stop write: CS=1
 	GPIO_WriteBit(getGpioPin(obj->pin_ssel), 1);
-
 	return SUCCESS;
 }
 
